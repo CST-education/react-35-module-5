@@ -20,7 +20,11 @@ export class PexelsFetchObject {
     return this._page;
   }
   set page(value) {
-    return (this._page += value);
+    if (value === 1) {
+      return (this._page += value);
+    } else {
+      return (this._page = value);
+    }
   }
   resetPage() {
     return (this._page = 1);
@@ -45,6 +49,10 @@ export class PexelsFetchObject {
       'perPage:',
       this.perPage,
     );
+    if (!this.searchQuery) {
+      alert(`Enter the search value please!`);
+      return;
+    }
     let params = `?query=${this.searchQuery}&page=${this.page}&per_page=${this.perPage}`;
     let url = this.endPoint + params;
 
@@ -55,6 +63,7 @@ export class PexelsFetchObject {
       // console.log(data);
       if (result.status === 200) return data;
     } catch (err) {
+      console.log('err', err);
       return err.message;
     }
   }

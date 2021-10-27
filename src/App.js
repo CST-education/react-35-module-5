@@ -1,13 +1,8 @@
 import { lazy, Suspense } from 'react';
-import './App.css';
 
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Loader } from './components/Loader/Loader';
 import { Navigation } from './components/Navigation/Navigation';
-// STATIC IMPORTS
-// import HomePage from './pages/Home/Home';
-// import PexelsPage from './pages/Pexels/Pexels';
-// import ProductsPage from './pages/Products/Products';
 
 // DYNAMIC IMPORTS
 const HomePage = lazy(() =>
@@ -22,24 +17,31 @@ const ProductsPage = lazy(() =>
 
 function App() {
   return (
-    <div className="App">
-      <Navigation />
-      <Suspense fallback={<Loader />}>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
+    <>
+      <header>
+        <Navigation />
+      </header>
+      <main>
+        <Suspense fallback={<Loader />}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
 
-          <Route path="/pexels">
-            <PexelsPage title="MAin Title" />
-          </Route>
+            <Route path="/pexels">
+              <PexelsPage title="MAin Title" />
+            </Route>
 
-          <Route path="/products" component={ProductsPage} />
+            <Route path="/products" component={ProductsPage} />
 
-          <Route>
-            <p>Page not found</p>
-          </Route>
-        </Switch>
-      </Suspense>
-    </div>
+            <Route>
+              <p>Page not found</p>
+            </Route>
+          </Switch>
+        </Suspense>
+      </main>
+      <footer>
+        <p>&copy; FE-35 all rights reserved 2021</p>
+      </footer>
+    </>
   );
 }
 

@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
-
+import s from './Navigation.module.css'
 export function Navigation() {
   return (
     <nav>
-      <ul>
+      <ul className={s.navList}>
         <li>
           <NavLink
             exact
